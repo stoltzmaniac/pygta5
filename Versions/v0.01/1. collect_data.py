@@ -61,7 +61,7 @@ def main():
         time.sleep(1)
 
     paused = False
-    while(True):
+    while True:
         if not paused:
             # 800x600 windowed mode
             screen = grab_screen(region=(0,40,800,640))
@@ -72,7 +72,7 @@ def main():
             keys = key_check()
             output = keys_to_output(keys)
             training_data.append([screen,output])
-            
+
             if len(training_data) % 1000 == 0:
                 print(len(training_data))
                 np.save(file_name,training_data)
@@ -82,11 +82,11 @@ def main():
             if paused:
                 paused = False
                 print('unpaused!')
-                time.sleep(1)
             else:
                 print('Pausing!')
                 paused = True
-                time.sleep(1)
+
+            time.sleep(1)
 
 
 main()

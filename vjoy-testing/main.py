@@ -31,8 +31,7 @@ EPOCHS = 10
 DELTA_COUNT_THRESHOLD = 1000
 
 def delta_images(t0, t1, t2):
-    d1 = cv2.absdiff(t2, t0)
-    return d1
+    return cv2.absdiff(t2, t0)
 
 choices = deque([], maxlen=5)
 

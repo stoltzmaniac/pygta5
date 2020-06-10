@@ -116,9 +116,9 @@ def process_img(image):
     processed_img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     # edge detection
     processed_img =  cv2.Canny(processed_img, threshold1 = 200, threshold2=300)
-    
+
     processed_img = cv2.GaussianBlur(processed_img,(5,5),0)
-    
+
     vertices = np.array([[10,500],[10,300],[300,200],[500,200],[800,300],[800,500],
                          ], np.int32)
 
@@ -133,14 +133,13 @@ def process_img(image):
         cv2.line(original_image, (l2[0], l2[1]), (l2[2], l2[3]), [0,255,0], 30)
     except Exception as e:
         print(str(e))
-        pass
     try:
         for coords in lines:
             coords = coords[0]
             try:
                 cv2.line(processed_img, (coords[0], coords[1]), (coords[2], coords[3]), [255,0,0], 3)
-                
-                
+
+
             except Exception as e:
                 print(str(e))
     except Exception as e:

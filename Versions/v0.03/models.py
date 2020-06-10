@@ -25,10 +25,9 @@ def resnext(width, height, frame_count, lr, output=9, model_name = 'sentnet_colo
     net = tflearn.regression(net, optimizer=opt,
                              loss='categorical_crossentropy')
 
-    model = tflearn.DNN(net,
-                        max_checkpoints=0, tensorboard_verbose=0, tensorboard_dir='log')
-
-    return model
+    return tflearn.DNN(
+        net, max_checkpoints=0, tensorboard_verbose=0, tensorboard_dir='log'
+    )
 
 
 def sentnet_color_2d(width, height, frame_count, lr, output=9, model_name = 'sentnet_color.model'):
@@ -64,10 +63,9 @@ def sentnet_color_2d(width, height, frame_count, lr, output=9, model_name = 'sen
                          loss='categorical_crossentropy',
                          learning_rate=lr, name='targets')
 
-    model = tflearn.DNN(network,
-                        max_checkpoints=0, tensorboard_verbose=0, tensorboard_dir='log')
-
-    return model
+    return tflearn.DNN(
+        network, max_checkpoints=0, tensorboard_verbose=0, tensorboard_dir='log'
+    )
 
 
 
@@ -185,20 +183,18 @@ def inception_v3(width, height, frame_count, lr, output=9, model_name = 'sentnet
     pool5_7_7 = avg_pool_2d(inception_5b_output, kernel_size=7, strides=1)
     pool5_7_7 = dropout(pool5_7_7, 0.4)
 
-    
+
     loss = fully_connected(pool5_7_7, output,activation='softmax')
 
 
-    
+
     network = regression(loss, optimizer='momentum',
                          loss='categorical_crossentropy',
                          learning_rate=lr, name='targets')
-    
-    model = tflearn.DNN(network,
-                        max_checkpoints=0, tensorboard_verbose=0,tensorboard_dir='log')
 
-
-    return model
+    return tflearn.DNN(
+        network, max_checkpoints=0, tensorboard_verbose=0, tensorboard_dir='log'
+    )
 
 
 
@@ -315,20 +311,22 @@ def inception_v3_3d(width, height, frame_count, lr, output=9, model_name = 'sent
     pool5_7_7 = avg_pool_3d(inception_5b_output, kernel_size=7, strides=1)
     pool5_7_7 = dropout(pool5_7_7, 0.4)
 
-    
+
     loss = fully_connected(pool5_7_7, output,activation='softmax')
 
 
-    
+
     network = regression(loss, optimizer='momentum',
                          loss='categorical_crossentropy',
                          learning_rate=lr, name='targets')
-    
-    model = tflearn.DNN(network, checkpoint_path=model_name,
-                        max_checkpoints=1, tensorboard_verbose=0,tensorboard_dir='log')
 
-
-    return model
+    return tflearn.DNN(
+        network,
+        checkpoint_path=model_name,
+        max_checkpoints=1,
+        tensorboard_verbose=0,
+        tensorboard_dir='log',
+    )
 
 
 
@@ -344,10 +342,13 @@ def sentnet_LSTM_gray(width, height, frame_count, lr, output=9):
     network = tflearn.regression(network, optimizer='adam',
     loss='categorical_crossentropy', name="output1")
 
-    model = tflearn.DNN(network, checkpoint_path='model_lstm',
-                        max_checkpoints=1, tensorboard_verbose=0, tensorboard_dir='log')
-
-    return model
+    return tflearn.DNN(
+        network,
+        checkpoint_path='model_lstm',
+        max_checkpoints=1,
+        tensorboard_verbose=0,
+        tensorboard_dir='log',
+    )
 
 
 
@@ -386,10 +387,13 @@ def sentnet_color(width, height, frame_count, lr, output=9, model_name = 'sentne
                          loss='categorical_crossentropy',
                          learning_rate=lr, name='targets')
 
-    model = tflearn.DNN(network, checkpoint_path=model_name,
-                        max_checkpoints=1, tensorboard_verbose=0, tensorboard_dir='log')
-
-    return model
+    return tflearn.DNN(
+        network,
+        checkpoint_path=model_name,
+        max_checkpoints=1,
+        tensorboard_verbose=0,
+        tensorboard_dir='log',
+    )
 
 
 
@@ -427,10 +431,13 @@ def sentnet_frames(width, height, frame_count, lr, output=9):
                          loss='categorical_crossentropy',
                          learning_rate=lr, name='targets')
 
-    model = tflearn.DNN(network, checkpoint_path='model_alexnet',
-                        max_checkpoints=1, tensorboard_verbose=0, tensorboard_dir='log')
-
-    return model
+    return tflearn.DNN(
+        network,
+        checkpoint_path='model_alexnet',
+        max_checkpoints=1,
+        tensorboard_verbose=0,
+        tensorboard_dir='log',
+    )
 
 
 
@@ -456,10 +463,13 @@ def sentnet2(width, height, frame_count, lr, output=9):
                          loss='categorical_crossentropy',
                          learning_rate=lr, name='targets')
 
-    model = tflearn.DNN(network, checkpoint_path='model_alexnet',
-                        max_checkpoints=1, tensorboard_verbose=0, tensorboard_dir='log')
-
-    return model
+    return tflearn.DNN(
+        network,
+        checkpoint_path='model_alexnet',
+        max_checkpoints=1,
+        tensorboard_verbose=0,
+        tensorboard_dir='log',
+    )
 
 
 def sentnet(width, height, frame_count, lr, output=9):
@@ -495,10 +505,13 @@ def sentnet(width, height, frame_count, lr, output=9):
                          loss='categorical_crossentropy',
                          learning_rate=lr, name='targets')
 
-    model = tflearn.DNN(network, checkpoint_path='model_alexnet',
-                        max_checkpoints=1, tensorboard_verbose=0, tensorboard_dir='log')
-
-    return model
+    return tflearn.DNN(
+        network,
+        checkpoint_path='model_alexnet',
+        max_checkpoints=1,
+        tensorboard_verbose=0,
+        tensorboard_dir='log',
+    )
 
 
 
@@ -535,10 +548,13 @@ def alexnet2(width, height, lr, output=3):
                          loss='categorical_crossentropy',
                          learning_rate=lr, name='targets')
 
-    model = tflearn.DNN(network, checkpoint_path='model_alexnet',
-                        max_checkpoints=1, tensorboard_verbose=0, tensorboard_dir='log')
-
-    return model
+    return tflearn.DNN(
+        network,
+        checkpoint_path='model_alexnet',
+        max_checkpoints=1,
+        tensorboard_verbose=0,
+        tensorboard_dir='log',
+    )
 
 
 
@@ -602,9 +618,12 @@ def alexnet(width, height, lr, output=3):
                          loss='categorical_crossentropy',
                          learning_rate=lr, name='targets')
 
-    model = tflearn.DNN(network, checkpoint_path='model_alexnet',
-                        max_checkpoints=1, tensorboard_verbose=0, tensorboard_dir='log')
-
-    return model
+    return tflearn.DNN(
+        network,
+        checkpoint_path='model_alexnet',
+        max_checkpoints=1,
+        tensorboard_verbose=0,
+        tensorboard_dir='log',
+    )
 
 

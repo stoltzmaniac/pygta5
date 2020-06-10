@@ -54,7 +54,7 @@ def main():
         time.sleep(1)
 
     paused = False
-    while(True):
+    while True:
         
         if not paused:
             # 800x600 windowed mode
@@ -86,13 +86,13 @@ def main():
         if 'T' in keys:
             if paused:
                 paused = False
-                time.sleep(1)
             else:
                 paused = True
                 ReleaseKey(A)
                 ReleaseKey(W)
                 ReleaseKey(D)
-                time.sleep(1)
+
+            time.sleep(1)
 
 main()       
 
